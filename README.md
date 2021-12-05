@@ -33,3 +33,8 @@ An easy way to understand this organisation system is by corelating it to the wa
     * Document
     * Pair
     * Cli
+
+#Contribution
+* Create a separate branch for every feature, and once it's working, send a PR. If you commit to main, I'll personally stab you (especially if something breaks).
+* Maintain neat, clean, readable code. Use sensible variable and function names, and write comments for the confusing parts.
+* Use __1 tabspace__ only for indentation. Please don't use spaces, it just makes the coding experience shitty.
