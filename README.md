@@ -39,3 +39,4 @@ An easy way to understand this organisation system is by corelating it to the wa
 * Maintain neat, clean, readable code. Use sensible variable and function names, and write comments for the confusing parts.
 * Use __1 tabspace__ only for indentation. Please don't use spaces, it just makes the coding experience shitty.
 * See [this](https://www.conventionalcommits.org/en/v1.0.0/) for how to write readable commit messages.
+* Don't commit any generated files, compiled .class files or other temporary stuff. If you have something that should not be committed, add it to the .gitignore file.
