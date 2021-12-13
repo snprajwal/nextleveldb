@@ -9,8 +9,7 @@ An easy way to understand this organisation system is by corelating it to the wa
 |Row|Key-value pair|
 
 # Basic features
-* Provide CRUD operations using keywords CREATE, VIEW, UPDATE, DELETE
-* End every command with a semicolon so that it's easy for us to process it
+* Provide CRUD operations using keywords CREATE, LIST, UPDATE, DELETE
 * (Idea) Provide feature to dump a document with EXPORT and import it with... (you guessed it right) IMPORT
 * (Idea) Enforce specific data types for key and value (like SQL field data types)
 
@@ -20,7 +19,7 @@ An easy way to understand this organisation system is by corelating it to the wa
     * Document: map(document_name, *data[])
     * Data: map(key, value)
 * __CLI__: Let's just read the user input as a string, split it at spaces, and handle it based on the identifiers.
-    * Every command will be in the following structure: `OPERATION IDENTIFIER [VALUES]`. For example,
+    * Every command will be in the following syntax: `OPERATION IDENTIFIER [VALUES]`. For example,
         * `create index nextleveldb`
         * `create document test`
         * `create pair "foo" "bar"`
