@@ -9,7 +9,7 @@ class Parser {
 		String identifier;
 		String[] tokens = cmd.toLowerCase().split(" ");
 		// tokens(0, 1, ...) = {OPERATION, IDENTIFIER, ...VALUES}
-		if (tokens[0] == "exit")
+		if (tokens[0].equals("exit"))
 			System.exit(0);
 		if (tokens.length < 2) {
 			System.out.println("ERR: Invalid command");
@@ -34,7 +34,7 @@ class Parser {
 
 	void indexHandler(String[] tokens) {
 		String operation = tokens[0];
-		if (operation == "list") {
+		if (operation.equals("list")) {
 			db.listIndexes();
 			return;
 		}
@@ -46,7 +46,7 @@ class Parser {
 		Index index;
 		switch (operation) {
 		case "create":
-			if (db.getIndex(name).name != "") {
+			if (!db.getIndex(name).name.equals("")) {
 				db.createIndex(name);
 				System.out.println("Index " + name + " created");
 				return;
@@ -55,7 +55,7 @@ class Parser {
 			return;
 		case "connect":
 			index = db.getIndex(name);
-			if (index.name != "") {
+			if (!index.name.equals("")) {
 				currentIndex = index;
 				System.out.println("Connected to index " + currentIndex.name);
 				return;
@@ -64,8 +64,8 @@ class Parser {
 			return;
 		case "delete":
 			index = db.getIndex(name);
-			if (index.name != "") {
-				if (currentIndex.name == name) {
+			if (!index.name.equals("")) {
+				if (currentIndex.name.equals(name)) {
 					currentIndex = null;
 				}
 				db.deleteIndex(name);
