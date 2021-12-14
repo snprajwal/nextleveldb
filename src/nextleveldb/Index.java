@@ -1,14 +1,14 @@
 package nextleveldb;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-class Index { // implements Operations
+class Index {
 	String name;
-	ArrayList<Document> docs;
+	private Map<String, Document> docs = new HashMap<String, Document>();
 
 	Index(String name) {
 		this.name = name;
-		this.docs = new ArrayList<Document>();
 	}
 	// add functions for insert, delete, list, connect
 }

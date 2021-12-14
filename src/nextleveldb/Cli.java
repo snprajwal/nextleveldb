@@ -2,16 +2,18 @@ package nextleveldb;
 
 import java.util.Scanner;
 
-class Cli {
+class Cli extends Parser {
+	final String PROMPT = ">";
+	Scanner s = new Scanner(System.in);
+
 	void run() {
-		Scanner s = new Scanner(System.in);
-		Parser parser = new Parser();
+		printLogo();
 		while (true) {
-			System.out.print(">");
+			System.out.print(PROMPT);
 			String cmd = s.nextLine();
 			if (cmd.isEmpty())
 				continue;
-			parser.parse(cmd);
+			parse(cmd);
 		}
 	}
 
