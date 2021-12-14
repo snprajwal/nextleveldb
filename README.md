@@ -14,28 +14,44 @@ An easy way to understand this organisation system is by corelating it to the wa
 * (Idea) Enforce specific data types for key and value (like SQL field data types)
 
 # Implementation
-* __Storage__: _Maps_. Literally everything can be done with maps, and it'll save us a ton of work.
-    * Index: map(index_name, *documents[])
-    * Document: map(document_name, *data[])
-    * Data: map(key, value)
-* __CLI__: Let's just read the user input as a string, split it at spaces, and handle it based on the identifiers.
-    * Every command will be in the following syntax: `OPERATION IDENTIFIER [VALUES]`. For example,
+* __Storage__: _Maps_. Literally everything can be done with maps.
+    * DB contains map(index_name, Index)
+    * Index contains map(document_name, Document)
+    * Document contains map(key, value)
+* __CLI__: We read the user input as a string, split it at spaces, and handle it based on the identifiers.
+    * Every command is in the following syntax: `OPERATION IDENTIFIER [VALUES]`. For example,
         * `create index nextleveldb`
         * `create document test`
         * `create pair "foo" "bar"`
         * `delete pair "foo"`
         * `delete index nextleveldb`
-    * In case of the last command, we should probably display a warning saying "Index contains documents, continue with deletion? (y/n)"
+    * In case of the last command, we display a warning saying "Index contains documents, continue with deletion? (y/n)"
+
+# Technical Specification
 * __Classes__:
-    * NextLevelDB (the main class)
+    * NextLevelDB (the database instance)
+        * listIndexes
+        * createIndex
+        * connectIndex
+        * deleteIndex
     * Index
+        * listDocuments
+        * createDocument
+        * deleteDocument
     * Document
-    * Pair
+        * listPairs
+        * createPair
+        * updatePair
+        * deletePair
     * Cli
+        * run
+        * parse
+        * printLogo
+    * Run
 
 # Contribution
 * Create a separate branch for every feature, and once it's working, send a PR. If you commit to main, I'll personally stab you (especially if something breaks).
 * Maintain neat, clean, readable code. Use sensible variable and function names, and write comments for the confusing parts.
-* Use __1 tabspace__ only for indentation. Please don't use spaces, it just makes the coding experience shitty.
+* Use __1 tabspace__ only for indentation. Please don't use spaces, it just makes the coding experience messy.
 * See [this](https://www.conventionalcommits.org/en/v1.0.0/) for how to write readable commit messages.
 * Don't commit any generated files, compiled .class files or other temporary stuff. If you have something that should not be committed, add it to the .gitignore file.
