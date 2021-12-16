@@ -10,5 +10,11 @@ class Index {
 	Index(String name) {
 		this.name = name;
 	}
+	void listDocuments(){
+	}
+	void createDocument(){
+	}
+	void deleteDocument(){
+	}
 	// add functions for insert, delete, list, connect
 }
