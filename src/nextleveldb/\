@@ -1,15 +1,30 @@
 package nextleveldb;
-
+import org.json.*;
 
 class Parser {
 	NextLevelDB db = new NextLevelDB();
-	Index ind = new Index("");
-	Document doc = new Document("");
+	Index ind = new Index();
+	Document doc = new Document();
 	Index currentIndex;
 	Document currentDocument;
+	
+	public boolean isJSONValid(String test) {
+	    try {
+		    new JSONObject(test);
+	    } catch (JSONException ex) {
+          			 // e.g. in case JSONArray is valid as well...
+   	    try {
+		    new JSONArray(test);
+	    } catch (JSONException ex1) {
+            return false;
+       			 }
+   		 }
+   	 return true;
+	}
+
 	void parse(String cmd) {
 		String identifier;
-		String[] tokens = cmd.toLowerCase().split(" ");
+		String[] tokens = cmd.toLowerCase().split(" ");//only pairs need json input 
 		// tokens(0, 1, ...) = {OPERATION, IDENTIFIER, ...VALUES}
 		if (tokens[0].equals("exit"))
 			System.exit(0);
@@ -48,8 +63,7 @@ class Parser {
 		Index index;
 		switch (operation) {
 		case "create":
-			index = db.getIndex(name);
-			if (index.name.equals("")) {
+			if (!db.getIndex(name).name.equals("")) {
 				db.createIndex(name);
 				System.out.println("Index " + name + " created");
 				return;
@@ -59,11 +73,8 @@ class Parser {
 		case "connect":
 			index = db.getIndex(name);
 			if (!index.name.equals("")) {
-				if (currentIndex.name.equals(name)) {
-					currentIndex = null;
-				}
 				currentIndex = index;
-				System.out.println("Connected to index " + currentIndex.currentind);
+				System.out.println("Connected to index " + currentIndex.name);
 				return;
 			}
 			System.out.println("ERR: Index does not exist");
@@ -71,9 +82,8 @@ class Parser {
 		case "delete":
 			index = db.getIndex(name);
 			if (!index.name.equals("")) {
-				if (currentIndex.name.equals(name)){	
-					currentIndex = null;}
-
+				if (currentIndex.name.equals(name)) {
+					currentIndex = null;
 				}
 				db.deleteIndex(name);
 				System.out.println("Deleted index " + name);
@@ -81,12 +91,13 @@ class Parser {
 			}
 			System.out.println("ERR: Index does not exist");
 			return;
+		}
+	}
 
-	}	
 	void documentHandler(String[] tokens) {
 		String operation = tokens[0];
 		if (operation.equals("list")) {
-			ind.listDocuments();
+			ind.listDocument();
 			return;
 		}
 		if (tokens.length < 3) {
@@ -97,8 +108,7 @@ class Parser {
 		Document document;
 		switch (operation) {
 		case "create":
-			document =ind.getDocument(name);
-			if (document.name.equals("")) {
+			if (!ind.getDocument(name).name.equals("")) {
 				ind.createDocument(name);
 				System.out.println("Document " + name + " created");
 				return;
@@ -107,11 +117,7 @@ class Parser {
 			return;
 		case "connect":
 			document = ind.getDocument(name);
-			if (!document.name.equals("")) {				
-				if (currentDocument.name.equals(name)) {
-					currentDocument = null;
-				}
-
+			if (!document.name.equals("")) {
 				currentDocument = document;
 				System.out.println("Connected to document " + currentDocument.name);
 				return;
@@ -132,11 +138,12 @@ class Parser {
 			return;
 		}
 	}
+	}
 
 	void pairHandler(String[] tokens) {
 		String operation = tokens[0];
 		if (operation.equals("list")) {
-			doc.listPairs();
+			doc.listPairs();//lists pairs in current document
 			return;
 		}
 		if (tokens.length < 3) {
@@ -144,39 +151,41 @@ class Parser {
 			return;
 		}
 		String name = tokens[2];
-		String keyy = tokens[2];
-		String val = tokens[3];
-		Document document;
+		Pair pair;
 		switch (operation) {
 		case "create":
-			document=ind.getDocument(name);
-			if (document.name.equals("")) {
-				doc.createPair(keyy,val);
-				System.out.println("key: " + keyy + " value:"+val);
+			if (!ind.getIndex(name).name.equals("")) {
+				doc.createPair(name);
+				System.out.println("Index " + name + " created");
 				return;
 			}
-			System.out.println("ERR: Pair already exists");
+			System.out.println("ERR: Index already exists");
 			return;
 
 		case "update":
-			document=ind.getDocument(name);
-			if (!document.name.equals("")) {
-				doc.updatePair(keyy,val);
-				System.out.println("key: " + keyy + " value:"+val);
+			if (!db.getIndex(name).name.equals("")) {
+				doc.updatePair(name);
+				System.out.println("Index " + name + " created");
 				return;
 			}
-			System.out.println("ERR: Pair doesnt exist");
+			System.out.println("ERR: Index already exists");
 			return;
+			}
 
 		case "delete":
-			document = ind.getDocument(name);
-			if (!document.name.equals("")) {
-				doc.deletePair(keyy);
-				System.out.println("Deleted pair " + keyy);
+			index = db.getIndex(name);
+			if (!index.name.equals("")) {
+				if (currentIndex.name.equals(name)) {
+					currentIndex = null;
+				}
+				doc.deletePair(name);
+				System.out.println("Deleted index " + name);
 				return;
 			}
-			System.out.println("ERR: Pair does not exist");
+			System.out.println("ERR: Index does not exist");
 			return;
 		}
 	}
+	}
+
 }

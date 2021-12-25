@@ -5,16 +5,28 @@ import java.util.Map;
 
 class Index {
 	String name;
-	private Map<String, Document> docs = new HashMap<String, Document>();
+	String currentind;
+	Index currentIndex;
+	private Map<String,Document> docs = new HashMap<String,Document>();
 
 	Index(String name) {
-		this.name = name;
+		this.name=name;
+	}
+	Document getDocument(String name){
+		if (!docs.containsValue(name)){
+			return new Document("");}
+		else{
+			return new Document(name); 
+		}
 	}
 	void listDocuments(){
+		for (Map.Entry pairEntry: docs.entrySet()) {
+			System.out.println(pairEntry.getKey()+":"+pairEntry.getValue());}
 	}
-	void createDocument(){
+	void createDocument(String name){
+		docs.put(name,getDocument(name));
 	}
-	void deleteDocument(){
+	void deleteDocument(String name){
+		docs.remove(name);
 	}
-	// add functions for insert, delete, list, connect
 }
