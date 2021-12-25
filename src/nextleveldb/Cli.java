@@ -20,7 +20,7 @@ class Cli extends Parser {
 	void printLogo() {
 		System.out.println(
 				" __    __                     __     __                                   __ _______  _______");
-		/*System.out.println(
+		System.out.println(
 				"|  \\  |  \\                   |  \\   |  \\                                 |  \\       \\|       \\ ");
 		System.out.println(
 				"| ▓▓\\ | ▓▓ ______  __    __ _| ▓▓_  | ▓▓       ______  __     __  ______ | ▓▓ ▓▓▓▓▓▓▓\\ ▓▓▓▓▓▓▓\\");
@@ -35,7 +35,7 @@ class Cli extends Parser {
 		System.out.println(
 				"| ▓▓  \\▓▓▓\\▓▓     \\  ▓▓ \\▓▓\\  \\▓▓  ▓▓ ▓▓     \\\\▓▓     \\   \\▓▓▓   \\▓▓     \\ ▓▓ ▓▓    ▓▓ ▓▓    ▓▓");
 		System.out.println(
-				" \\▓▓   \\▓▓ \\▓▓▓▓▓▓▓\\▓▓   \\▓▓   \\▓▓▓▓ \\▓▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓    \\▓     \\▓▓▓▓▓▓▓\\▓▓\\▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓");*/
+				" \\▓▓   \\▓▓ \\▓▓▓▓▓▓▓\\▓▓   \\▓▓   \\▓▓▓▓ \\▓▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓    \\▓     \\▓▓▓▓▓▓▓\\▓▓\\▓▓▓▓▓▓▓ \\▓▓▓▓▓▓▓");
 		System.out.println("\nNextLevelDB © 2021 Prajwal S N, Rahul K, Aum Santosh Patil");
 	}
 
