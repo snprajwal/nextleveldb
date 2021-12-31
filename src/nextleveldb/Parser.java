@@ -144,15 +144,15 @@ class Parser {
 			return;
 		}
 		String name = tokens[2];
-		String keyy = tokens[2];
+		String key = tokens[2];
 		String val = tokens[3];
 		Document document;
 		switch (operation) {
 		case "create":
 			document=ind.getDocument(name);
 			if (document.name.equals("")) {
-				doc.createPair(keyy,val);
-				System.out.println("key: " + keyy + " value:"+val);
+				doc.createPair(key,val);
+				System.out.println("key: " + key + " value:"+val);
 				return;
 			}
 			System.out.println("ERR: Pair already exists");
@@ -161,8 +161,8 @@ class Parser {
 		case "update":
 			document=ind.getDocument(name);
 			if (!document.name.equals("")) {
-				doc.updatePair(keyy,val);
-				System.out.println("key: " + keyy + " value:"+val);
+				doc.updatePair(key,val);
+				System.out.println("key: " + key + " value:"+val);
 				return;
 			}
 			System.out.println("ERR: Pair doesnt exist");
@@ -171,8 +171,8 @@ class Parser {
 		case "delete":
 			document = ind.getDocument(name);
 			if (!document.name.equals("")) {
-				doc.deletePair(keyy);
-				System.out.println("Deleted pair " + keyy);
+				doc.deletePair(key);
+				System.out.println("Deleted pair " + key);
 				return;
 			}
 			System.out.println("ERR: Pair does not exist");
