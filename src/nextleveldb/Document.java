@@ -16,14 +16,14 @@ class Document {
 			System.out.println(pairEntry.getKey()+":"+pairEntry.getValue());
 		}
 	}
-	void createPair(String keyy , String val){
-		pairs.get(this.name).put(keyy,val);
+	void createPair(String key , String val){
+		pairs.get(this.name).put(key,val);
 	}
-	void updatePair(String keyy , String val){
-		pairs.get(this.name).replace(keyy,val);
+	void updatePair(String key , String val){
+		pairs.get(this.name).replace(key,val);
 	}
-	void deletePair(String keyy){
-		pairs.get(this.name).remove(keyy);
+	void deletePair(String key){
+		pairs.get(this.name).remove(key);
 	}
  
 }
