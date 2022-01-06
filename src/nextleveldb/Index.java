@@ -16,7 +16,7 @@ class Index {
 		if (!docs.containsValue(name)){
 			return new Document("");}
 		else{
-			return new Document(name); 
+			return docs.get(name); 
 		}
 	}
 	void listDocuments(){

@@ -59,9 +59,6 @@ class Parser {
 		case "connect":
 			index = db.getIndex(name);
 			if (!index.name.equals("")) {
-				if (currentIndex.name.equals(name)) {
-					currentIndex = null;
-				}
 				currentIndex = index;
 				System.out.println("Connected to index " + currentIndex.currentind);
 				return;
@@ -94,8 +91,9 @@ class Parser {
 			return;
 		}
 		String name = tokens[2];
-		Document document;
-		switch (operation) {
+		Document document ;
+        document=currentDocument
+        switch (operation) {
 		case "create":
 			document =ind.getDocument(name);
 			if (document.name.equals("")) {
@@ -147,6 +145,7 @@ class Parser {
 		String key = tokens[2];
 		String val = tokens[3];
 		Document document;
+        document=currentDocument
 		switch (operation) {
 		case "create":
 			document=ind.getDocument(name);

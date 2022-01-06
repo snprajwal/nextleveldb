@@ -5,7 +5,7 @@ import java.util.Map;
 
 class Document {
 	String name;
-	private Map<String,Map<String,String>>pairs = new HashMap<String,Map<String,String>>();
+	private Map<String,String>pairs = new HashMap<String,String>();
 
 	Document(String name) {
 		this.name = name;
@@ -17,13 +17,13 @@ class Document {
 		}
 	}
 	void createPair(String key , String val){
-		pairs.get(this.name).put(key,val);
+		pairs.put(key,val);
 	}
 	void updatePair(String key , String val){
-		pairs.get(this.name).replace(key,val);
+		pairs.replace(key,val);
 	}
 	void deletePair(String key){
-		pairs.get(this.name).remove(key);
+		pairs.remove(key);
 	}
  
 }
