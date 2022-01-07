@@ -5,27 +5,32 @@ import java.util.Map;
 
 class Document {
 	String name;
-	private Map<String,String>pairs = new HashMap<String,String>();
+	private Map<String, String> pairs = new HashMap<String, String>();
 
 	Document(String name) {
 		this.name = name;
 	}
 
-	void listPairs(){
-		for(Map.Entry pairEntry: pairs.entrySet()) {
-			System.out.println(pairEntry.getKey()+":"+pairEntry.getValue());
-		}
+	String getPair(String key) {
+		if (!pairs.containsKey(key))
+			return "";
+		return pairs.get(key);
 	}
-	void createPair(String key , String val){
-		pairs.put(key,val);
+
+	void listPairs() {
+		pairs.forEach((key, value) -> System.out.println(key + " -> " + value));
 	}
-	void updatePair(String key , String val){
-		pairs.replace(key,val);
+
+	void createPair(String key, String val) {
+		pairs.put(key, val);
 	}
-	void deletePair(String key){
+
+	void updatePair(String key, String val) {
+		pairs.replace(key, val);
+	}
+
+	void deletePair(String key) {
 		pairs.remove(key);
 	}
- 
+
 }
-
-

@@ -15,15 +15,16 @@ An easy way to understand this organisation system is by corelating it to the wa
 
 # Implementation
 * __Storage__: _Maps_. Literally everything can be done with maps.
-    * DB contains map(index_name, Index)
-    * Index contains map(document_name, Document)
+    * DB contains map(indexName, Index)
+    * Index contains map(documentName, Document)
     * Document contains map(key, value)
 * __CLI__: We read the user input as a string, split it at spaces, and handle it based on the identifiers.
     * Every command is in the following syntax: `OPERATION IDENTIFIER [VALUES]`. For example,
         * `create index nextleveldb`
-        * `create document test`
-        * `create pair "foo" "bar"`
-        * `delete pair "foo"`
+        * `create doc test`
+        * `create pair foo bar`
+        * `get pair foo`
+        * `delete pair foo`
         * `delete index nextleveldb`
     * In case of the last command, we display a warning saying "Index contains documents, continue with deletion? (y/n)"
 
@@ -31,23 +32,30 @@ An easy way to understand this organisation system is by corelating it to the wa
 * __Classes__:
     * NextLevelDB (the database instance)
         * listIndexes
+        * getIndex
         * createIndex
-        * connectIndex
         * deleteIndex
     * Index
         * listDocuments
+        * getDocument
         * createDocument
         * deleteDocument
     * Document
         * listPairs
+        * getPair
         * createPair
         * updatePair
         * deletePair
+    * Parser
+        * parse
+        * indexHandler
+        * documentHandler
+        * pairHandler
     * Cli
         * run
-        * parse
         * printLogo
     * Run
+        * main
 
 # Contribution
 * Create a separate branch for every feature, and once it's working, send a PR. If you commit to main, I'll personally stab you (especially if something breaks).
