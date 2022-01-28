@@ -4,18 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 class NextLevelDB {
-	private Map<String, Index> indexes = new HashMap<String, Index>();
+    private Map<String, Index> indexes = new HashMap<String, Index>();
 
-	void listIndexes() {
-	}
+    Index getIndex(String name) {
+        if (!indexes.containsKey(name))
+            return new Index("");
+        return indexes.get(name);
+    }
 
-	Index getIndex(String name) {
-		return new Index("");
-	}
+    void listIndexes() {
+        indexes.forEach((key, value) -> System.out.println(key));
+    }
 
-	void createIndex(String name) {
-	}
+    void createIndex(String name) {
+        indexes.put(name, new Index(name));
+    }
 
-	void deleteIndex(String name) {
-	}
+    void deleteIndex(String name) {
+        indexes.remove(name);
+    }
 }

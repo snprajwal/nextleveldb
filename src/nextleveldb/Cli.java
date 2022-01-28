@@ -3,12 +3,16 @@ package nextleveldb;
 import java.util.Scanner;
 
 class Cli extends Parser {
-	final String PROMPT = ">";
+	final String PROMPT = "# ";
 	Scanner s = new Scanner(System.in);
 
 	void run() {
 		printLogo();
 		while (true) {
+			if (super.currentIndex != null)
+				System.out.print(super.currentIndex.name);
+			if (super.currentDocument != null)
+				System.out.print('@' + super.currentDocument.name);
 			System.out.print(PROMPT);
 			String cmd = s.nextLine();
 			if (cmd.isEmpty())
