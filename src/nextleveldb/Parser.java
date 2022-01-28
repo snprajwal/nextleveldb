@@ -68,6 +68,7 @@ class Parser {
 			if (!db.getIndex(name).name.isBlank()) {
 				if (currentIndex.name.equals(name)) {
 					currentIndex = null;
+					currentDocument = null;
 				}
 				db.deleteIndex(name);
 				System.out.println("Deleted index " + name);
