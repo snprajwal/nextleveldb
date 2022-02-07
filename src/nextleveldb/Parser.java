@@ -66,10 +66,11 @@ class Parser {
 			return;
 		case "delete":
 			if (!db.getIndex(name).name.isBlank()) {
-				if (currentIndex.name.equals(name)) {
-					currentIndex = null;
-					currentDocument = null;
-				}
+				if (currentIndex != null)
+					if (currentIndex.name.equals(name)) {
+						currentIndex = null;
+						currentDocument = null;
+					}
 				db.deleteIndex(name);
 				System.out.println("Deleted index " + name);
 				return;
@@ -120,9 +121,10 @@ class Parser {
 			return;
 		case "delete":
 			if (!currentIndex.getDocument(name).name.isBlank()) {
-				if (currentDocument.name.equals(name)) {
-					currentDocument = null;
-				}
+				if (currentDocument != null)
+					if (currentDocument.name.equals(name)) {
+						currentDocument = null;
+					}
 				currentIndex.deleteDocument(name);
 				System.out.println("Deleted document " + name);
 				return;
