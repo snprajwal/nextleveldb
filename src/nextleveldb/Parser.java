@@ -197,6 +197,7 @@ class Parser {
 		case "update":
 			if (!currentDocument.getPair(key).isBlank()) {
 				currentDocument.updatePair(key, val);
+				System.out.println("Pair " + key + " -> " + val + " updated");
 				return;
 			}
 			System.out.println("ERR: Pair does not exist");
